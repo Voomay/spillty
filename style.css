@@ -1203,14 +1203,15 @@ hr {
 
     .logo-dropdown {
         left: 0px;
-        width: 150px;
-        height: 110px;
-        border-radius: 0 0 30px 30px;
+        width: 140px;
+        height: 100px;
+        top: -15px;
+        border-radius: 0 0 20px 20px;
     }
 
     .logo-image-wrapper {
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
     }
 
     .menu-toggle {
@@ -1227,7 +1228,34 @@ hr {
 
     .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
+    }
+
+    .about .about-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+    }
+
+    .item-1, .item-2, .item-3, .item-4 {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    .stats-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .stat-item {
+        flex: 0 0 calc(50% - 20px);
+        min-width: 120px;
     }
 
     .packages-grid-4 {
@@ -1240,5 +1268,44 @@ hr {
 
     .testimonial-card h3 {
         font-size: 1.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-dropdown {
+        width: 110px;
+        height: 85px;
+        top: -15px;
+    }
+    
+    .logo-image-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .bento-grid {
+        grid-auto-rows: 120px;
+    }
+
+    .stat-item {
+        flex: 0 0 100%;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 10px;
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
+    .rate-badge {
+        font-size: 0.8rem;
+    }
+
+    h3[style*="font-size: 2.5rem"] {
+        font-size: 2rem !important;
     }
 }
