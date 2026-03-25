@@ -218,20 +218,19 @@ section {
 }
 
 .logo-dropdown {
-    position: absolute;    
-    top: -15px;            
+    position: absolute;    /* Positioned absolute to allow for overlap */
+    top: -15px;            /* Shifted up to touch the top of the header */
     background: var(--light);
-    width: 240px;          /* Restored wider profile */
-    height: 145px;         /* Restored taller profile for overlap */
-    border-radius: 0 0 120px 120px; /* Restored U-shape */
+    width: 180px;          /* Made wider as requested */
+    height: 140px;         /* Slightly taller to keep the same hang below */
+    border-radius: 0 0 20px 20px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--border);
     border-top: none;
-    padding-bottom: 15px;
-    z-index: 1002;
+    padding-bottom: 5px;
 }
 
 .logo-image-wrapper {
@@ -368,7 +367,8 @@ section {
 }
 
 .hero h1 {
-    font-size: 3.8rem;
+    font-size: 5rem;
+    font-weight: 900;
     margin-bottom: 25px;
     line-height: 1.1;
     color: var(--light);
@@ -380,7 +380,7 @@ section {
 }
 
 .about {
-    padding-top: 40px; /* Removed redundant double padding */
+    padding-top: 80px; /* No longer needs extra offset */
 }
 
 .grid-2 {
@@ -1067,8 +1067,47 @@ hr {
     .faq-visual { height: 250px; }
 
     /* Gallery & Contact Adjustments */
-    .gallery-grid { grid-template-columns: 1fr !important; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .contact-container { grid-template-columns: 1fr !important; }
+
+    /* Fix bento grid overlapping on mobile — reset all spans, use simple 2-col grid */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 160px;
+        gap: 10px;
+    }
+    .item-1, .item-2, .item-3, .item-4 {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* All headings 25px on mobile */
+    h1, h2, h3 {
+        font-size: 25px !important;
+        line-height: 1.2 !important;
+    }
+    .section-title {
+        font-size: 25px !important;
+    }
+    .hero h1 {
+        font-size: 30px !important;
+    }
+
+    /* Center about section text & button on mobile */
+    .about .sub-heading,
+    .about .section-title,
+    .about .desc,
+    .about p {
+        text-align: center;
+    }
+    .about .btn-primary,
+    .about .btn-rent-glow,
+    .about .btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
 }
 
 /* Footer Core Center styles */
@@ -1200,15 +1239,20 @@ hr {
         width: auto;
         flex: 1;
         justify-content: flex-start;
+        height: auto;
     }
 
+    /* Stop logo from hanging over the marquee on mobile */
     .logo-dropdown {
-        left: 0px;
-        width: 170px; /* Wider for U profile on mobile */
-        height: 115px;
-        top: -15px;
-        border-radius: 0 0 85px 85px; /* Restored U-shape even on mobile */
-        padding-bottom: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 120px;
+        height: 90px;
+        border-radius: 12px;
+        box-shadow: none;
+        border: none;
+        padding-bottom: 0;
     }
 
     .logo-image-wrapper {
@@ -1230,85 +1274,63 @@ hr {
 
     .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .about .about-container {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 150px;
-    }
-
-    .item-1 { grid-column: 1; grid-row: 1 / 3; }
-    .item-2 { grid-column: 2; grid-row: 1; }
-    .item-3 { grid-column: 2; grid-row: 2 / 4; }
-    .item-4 { grid-column: 1; grid-row: 3; }
-
-    .stats-row {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .stat-item {
-        flex: 0 0 calc(50% - 20px);
-        min-width: 120px;
+        gap: 40px;
     }
 
     .packages-grid-4 {
         grid-template-columns: 1fr;
     }
 
-    .section-padding {
-        padding: 50px 0; /* Reduced padding for tighter mobile sections */
+    /* Fix bento grid overlapping on smaller tablets too */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 160px;
+        gap: 10px;
+    }
+    .item-1, .item-2, .item-3, .item-4 {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* All headings 25px on mobile */
+    h1, h2, h3 {
+        font-size: 25px !important;
+        line-height: 1.2 !important;
+    }
+    .section-title {
+        font-size: 25px !important;
+    }
+    .hero h1 {
+        font-size: 32px !important;
+        font-weight: 900 !important;
+    }
+
+    /* Stats row: 100%, Standard, Events — 25px on mobile */
+    .stat-num {
+        font-size: 25px !important;
+    }
+
+    .testimonial-card {
+        padding: 30px 20px;
     }
 
     .testimonial-card h3 {
         font-size: 1.8rem !important;
     }
-}
 
-@media (max-width: 480px) {
-    .logo-dropdown {
-        width: 110px;
-        height: 85px;
-        top: -15px;
+    /* Center about section text & button on mobile */
+    .about .sub-heading,
+    .about .section-title,
+    .about .desc,
+    .about p {
+        text-align: center;
     }
-    
-    .logo-image-wrapper {
-        width: 60px;
-        height: 60px;
-    }
-
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .bento-grid {
-        grid-auto-rows: 120px;
-    }
-
-    .stat-item {
-        flex: 0 0 100%;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 10px;
-    }
-
-    .stat-item:last-child {
-        border-bottom: none;
-    }
-
-    .rate-badge {
-        font-size: 0.8rem;
-    }
-
-    h3[style*="font-size: 2.5rem"] {
-        font-size: 2rem !important;
+    .about .btn-primary,
+    .about .btn-rent-glow,
+    .about .btn {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
     }
 }
